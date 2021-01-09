@@ -1,13 +1,4 @@
-function waitForCanvas() {
-  var listener = setInterval(function () {
-    canvas = document.querySelector('.mapboxgl-canvas-container');
-    if (canvas) {
-      clearInterval(listener);
-    }
-  }, 500);
-}
-
-function initAddressLink() {
+function replaceAddressLinks() {
   var listener = setInterval(function () {
     canvas = document.querySelector('.mapboxgl-popup-anchor-top');
     if (canvas) {
@@ -25,8 +16,6 @@ function initAddressLink() {
       new_a.setAttribute('href', new_link);
       new_a.innerHTML = address;
       new_a.target = "_blank";
-      // new_a.setAttribute("onclick", "window.open('" + new_link + "')");
-      // document.querySelector('.mapboxgl-control-container').appendChild(new_a);
       line_container.appendChild(new_a);
 
       clearInterval(listener);
@@ -34,7 +23,16 @@ function initAddressLink() {
   }, 500);
 }
 
-function initCanvas() {
+function waitForCanvas() {
+  var listener = setInterval(function () {
+    canvas = document.querySelector('.mapboxgl-canvas-container');
+    if (canvas) {
+      clearInterval(listener);
+    }
+  }, 500);
+}
+
+function initCanvasWatcher() {
   waitForCanvas();
   const targetNode = document.querySelector('.mapboxgl-canvas-container');
   const config = {childList: true,  subtree: true };
@@ -43,7 +41,7 @@ function initCanvas() {
           if (mutation.type === 'childList') {
             for(var i = 0; i < mutation.addedNodes.length; i++) {
               mutation.addedNodes[i].addEventListener('click', function() {
-                initAddressLink();
+                replaceAddressLinks();
               });
             }
           }
@@ -54,4 +52,4 @@ function initCanvas() {
   observer.observe(targetNode, config);
 }
 
-initCanvas()
+initCanvasWatcher()
