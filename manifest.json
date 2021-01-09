@@ -1,0 +1,17 @@
+{
+  "name": "Colorado Property with Tabs",
+  "version": "0.0.1",
+  "description": "Transforms the coloproperty site to add links to properties so you can simply open tabs.",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": [
+        "https://coloproperty.com/*",
+        "https://www.coloproperty.com/*"
+      ],
+      "js": [
+        "src/inject.js"
+      ]
+    }
+  ]
+}
