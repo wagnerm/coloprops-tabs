@@ -6,6 +6,8 @@ With this loaded, you can right click + open in new tab on the property address 
 
 The site still has some js to open the property in the current window if you use cmd + two finger click on a Mac, so that doesn't work quite right. Just right click to open the link.
 
+![map](./local/map.png)
+
 ## Installation
 
 Load the extension manually by
